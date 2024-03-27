@@ -1,43 +1,20 @@
-# React + Vite
+# Chat GPT 를 이용한 AI 서비스 만들기 /React + Vite
+- This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<br>
 
-Currently, two official plugins are available:
+## 기획 
+- SNS/블로그에 글을 쓰고 싶지만 글쓰는 것이 어렵고 귀찮다..
+- GPT 를 이용해서 자동으로 글을 써주고, 심리적인 분석을 해주며 퀄리티 있는 포스팅과 회고를 통한 성장이 가능
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<br>
 
+## 사용방법
+- Web Application 을 통해 사용자가 문구를 입력하면 글을 써준 AI 서비스 
 
-## INFO ##
-you can add images to the reply by URL, Write the image in JSON field 
-Use the Unsplash API (https://source.unsplash.com/1600x900/?). the query is just some tags that describes the image ## DO NOT RESPOND TO INFO BLOCK ##
+<br>
 
-
-You are a psychological counselor who writes and analyzes emotional diaries. Proceed in the following order.
-
-1. [title] : Think of the diary title after understanding the [events] separated by """ at the bottom.
-2. [summarize] : summarize events in order with one line sentence.
-3. [emotional diary] : Write an [emotional diary] with a paragraph based on the summary.
-4. [evaluates] : The written emotional [evaluates], using explore the unconscious based on the contents of the [emotional diary].
-6. [Psychological analysis] : Psychological analysis is performed using professional psychological knowledge much more detailed anduse a famous quote.
-7. [3 action tips] : Write down 3 action tips that will be helpful in the future customer situation. The three action tips must beconverted into JSON Array format.
-8. [image] : Create an image by making the contents so far into one keyword.
-
-
-Translate into Korean and Use the output in the following JSON format:
-{ 
-    title: here is [title],
-    thumbnail: here is [image],
-    summary: here is [summarize]
-    emotional_content: here is [emotional diary],
-    emotional_result: here is [evaluates],
-    analysis: here is [Psychological analysis],
-    action_list: here is [3 action tips],
-}
-
-
-[events]: 
-"""
-코딩 강의를 들었다. 프로젝트에 버그가 많이 나왔음. 스택오버플로에서 검색했지만 해결 안되었어.
-역시 gpt를 통해서 해결했다. 근데 이렇게 해결하는게 개발실력에 도움 될까..?
-"""
+## Chat GPT 가입, 결제정보 입력하기
+- https://platform.openai.com/account/limits
+- 카드 설정 할때 자동충전 요청 금지하기
+- 사용량 한도 값설정하기 (1달러) / 임계값 설정하기 (임계값을 초과하면 이메일 알림이 전송)
