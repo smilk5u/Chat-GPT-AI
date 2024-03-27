@@ -28,12 +28,12 @@ const ThumbnailImage = styled(Image)`
 const DiaryDisplay = ({ data, isLoading }) => {
   return (
     <DiaryContainer>
-      {isLoading && (
+      {/* {isLoading && (
         <>
           불러오는중...
           <LoadingOutlined />
         </>
-      )}
+      )} */}
       <ResultTitle>{data.title}</ResultTitle>
 
       <Divider />
@@ -87,12 +87,9 @@ const DiaryDisplay = ({ data, isLoading }) => {
           GPT 조언
         </CardTitle>
         <CardContent>
-          {/* {data.action_list.map((action, index) => (
+          {data.action_list.map((action, index) => (
             <ActionListItem key={index}>{action}</ActionListItem>
-          ))} */}
-          {/* <ActionListItem>{data.action_list[0]}</ActionListItem>
-          <ActionListItem>{data.action_list[1]}</ActionListItem>
-          <ActionListItem>{data.action_list[2]}</ActionListItem> */}
+          ))}
         </CardContent>
       </CardContainer>
     </DiaryContainer>

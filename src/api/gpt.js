@@ -20,18 +20,8 @@ export const CallGPT = async ({ prompt }) => {
       7. [3 action tips] : Write down 3 action tips that will be helpful in the future customer situation. The three action tips must beconverted into JSON Array format.
       8. [image] : Make an image and write url by making the contents so far into one keyword.
       
-      
       Do not use English, translate into Korean and use output in the following JSON format:
-      { 
-          title: here is [title],
-          thumbnail: here is [image],
-          summary: here is [summarize]
-          emotional_content: here is [emotional diary],
-          emotional_result: here is [evaluates],
-          analysis: here is [Psychological analysis],
-          action_list: here is [3 action tips],
-      }
-      
+      {"title": here is [title],"thumbnail": here is [image],"summary": here is [summarize] "emotional_content": here is [emotional diary], "emotional_result": here is [evaluates], "analysis": here is [Psychological analysis], "action_list": here is [3 action tips], }      
       [events]:`,
     },
     {

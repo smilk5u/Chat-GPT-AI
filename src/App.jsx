@@ -21,16 +21,14 @@ function App() {
       const message = await CallGPT({
         prompt: `${userInput}`
       });
-      // console.log(message.replace(/\n/g, "").trim())
-      // console.log(message.replace(/\n/g, "").replace(/ /gi, ""))
-      // setData(message.replace(/\n/g, "").replace(/ /gi, ""))
+      console.log('message : ', message)
       console.log(JSON.parse(message.replace(/\n/g, "")))
       setData(JSON.parse(message.replace(/\n/g, "")))
     } catch (error) {
       console.error('에러가 발생했습니다.', error);
       messageApi.open({
         type: 'error',
-        content: error.message
+        content: '에러가 발생했습니다'
       });
     } finally {
       setIsLoading(false);
