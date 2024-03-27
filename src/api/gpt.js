@@ -18,7 +18,7 @@ export const CallGPT = async ({ prompt }) => {
       4. [evaluates] : The written emotional [evaluates], using explore the unconscious based on the contents of the [emotional diary].
       6. [Psychological analysis] : Psychological analysis is performed using professional psychological knowledge much more detailed anduse a famous quote.
       7. [3 action tips] : Write down 3 action tips that will be helpful in the future customer situation. The three action tips must beconverted into JSON Array format.
-      8. [image] : Create an image by making the contents so far into one keyword.
+      8. [image] : Make an image and write url by making the contents so far into one keyword.
       
       
       Do not use English, translate into Korean and use output in the following JSON format:
@@ -59,5 +59,5 @@ export const CallGPT = async ({ prompt }) => {
   const responseData = await response.json();
   const message = responseData.choices[0].message.content;
 
-  return responseData;
+  return message;
 };
