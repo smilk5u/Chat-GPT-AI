@@ -1,5 +1,5 @@
 # Chat GPT 를 이용한 AI 서비스 만들기 /React + Vite
-- Web Application 을 통해 사용자가 문구를 입력하면 글을 써준 AI 서비스 
+- Web Application 을 통해 사용자가 문구를 입력하면 글을 써주는 AI 서비스 
 
 <br>
 
