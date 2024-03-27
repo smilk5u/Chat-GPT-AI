@@ -1,16 +1,11 @@
 # Chat GPT 를 이용한 AI 서비스 만들기 /React + Vite
-- This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Web Application 을 통해 사용자가 문구를 입력하면 글을 써준 AI 서비스 
 
 <br>
 
 ## 기획 
 - SNS/블로그에 글을 쓰고 싶지만 글쓰는 것이 어렵고 귀찮다..
 - GPT 를 이용해서 자동으로 글을 써주고, 심리적인 분석을 해주며 퀄리티 있는 포스팅과 회고를 통한 성장이 가능
-
-<br>
-
-## 사용방법
-- Web Application 을 통해 사용자가 문구를 입력하면 글을 써준 AI 서비스 
 
 <br>
 
