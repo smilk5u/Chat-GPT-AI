@@ -1,11 +1,13 @@
 import {
   DiaryContainer,
   ResultTitle,
-  Divider,
   CardContainer,
+  CardImg,
   CardTitle,
   CardContent,
+  ActionList,
   ActionListItem,
+  Button,
 } from "./CommonStyles";
 
 import {
@@ -25,73 +27,45 @@ const ThumbnailImage = styled(Image)`
   margin-bottom: 15px;
 `;
 
-const DiaryDisplay = ({ data, isLoading }) => {
+const DiaryDisplay = ({ setResult, data, isLoading }) => {
   return (
-    <DiaryContainer>
-      {/* {isLoading && (
-        <>
-          불러오는중...
-          <LoadingOutlined />
-        </>
-      )} */}
+    <DiaryContainer $data={data}>
       <ResultTitle>{data.title}</ResultTitle>
-
-      <Divider />
+      <CardImg>
+        <ThumbnailImage src={data.thumbnail} alt="Thumbnail" />
+        <p className="summary">
+          <span>난 지금...</span>
+          {data.summary}
+        </p>
+      </CardImg>
       <CardContainer>
-        <CardTitle>
-          <CheckCircleTwoTone
-            twoToneColor="#FF9AA2"
-            style={{ marginRight: "6px" }}
-          />
-          요약
-        </CardTitle>
-        <CardContent>{data.summary}</CardContent>
-      </CardContainer>
-
-      <ThumbnailImage src={data.thumbnail} alt="Thumbnail" />
-
-      <Divider />
-      <CardContainer>
-        <CardTitle>
-          <HeartTwoTone twoToneColor="#FFB7B2" style={{ marginRight: "6px" }} />
-          감성일기장
-        </CardTitle>
+        <span>1장</span>
+        <CardTitle className="sub_title">감성일기장</CardTitle>
         <CardContent>{data.emotional_content}</CardContent>
       </CardContainer>
-
-      <Divider />
       <CardContainer>
-        <CardTitle>
-          <SmileTwoTone twoToneColor="#FFDAC1" style={{ marginRight: "6px" }} />
-          내가 느낀 감정
-        </CardTitle>
+        <span>2장</span>
+        <CardTitle className="sub_title">내가 느낀 감정</CardTitle>
         <CardContent>{data.emotional_result}</CardContent>
       </CardContainer>
-
-      <Divider />
       <CardContainer>
-        <CardTitle>
-          <MessageTwoTone
-            twoToneColor={"#B5EAD7"}
-            style={{ marginRight: "6px" }}
-          />
-          심리 분석
-        </CardTitle>
+        <span>3장</span>
+        <CardTitle className="sub_title">심리 분석</CardTitle>
         <CardContent>{data.analysis}</CardContent>
       </CardContainer>
-
-      <Divider />
       <CardContainer>
-        <CardTitle>
-          <SoundTwoTone twoToneColor="#C7CEEA" style={{ marginRight: "6px" }} />
-          GPT 조언
-        </CardTitle>
-        <CardContent>
+        <span>4장</span>
+        <CardTitle className="sub_title">GPT 조언</CardTitle>
+        <ActionList>
           {data.action_list.map((action, index) => (
-            <ActionListItem key={index}>{action}</ActionListItem>
+            <ActionListItem key={index}>
+              <em>{index + 1}</em>
+              {action}
+            </ActionListItem>
           ))}
-        </CardContent>
+        </ActionList>
       </CardContainer>
+      <Button onClick={() => setResult(false)}>다시하기</Button>
     </DiaryContainer>
   );
 };

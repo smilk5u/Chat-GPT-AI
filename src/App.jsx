@@ -1,19 +1,19 @@
-import './App.css'
 import { useState } from 'react';
 import { CallGPT } from './api/gpt';
-import DiaryInput from './components/DiaryInput';
-import styled from "styled-components";
-import DiaryDisplay from './components/DiaryDisplay';
 import { message } from 'antd';
+import DiaryDisplay from './components/DiaryDisplay';
+import styled from 'styled-components';
+import IntroDisplay from './components/IntroDisplay';
 
 const dummyData = JSON.parse(
-  `{ "title": "코딩 공부의 고난과 승리", "thumbnail": "https://source.unsplash.com/1600x900/?coding", "summary": "코딩 강의를 듣고 프로젝트 버그를 스택오버플로에서 해결하려 했지만 실패. GPT를 통해 해결했지만 개발실력에 도움이 될까?", "emotional_content": "오늘은 코딩 강의를 듣고 프로젝트에서 버그가 많이 나와 당황스러웠다. 스택오버플로에서 검색해 보았지만 해결되지 않아 좌절감을 느꼈다. 그러나 마침내 GPT를 활용하여 문제를 해결했지만, 이 경험이 개발 과정에서 얼마나 도움이 될지 의문이 들었다. 더 많은 학습과 도전이 필요한 하루였다.", "emotional_result": "이야기를 통해 고민과 실패에 직면했지만 결국 문제를 해결하는 데 성공했다. 이는 자신의 능력에 대한 확신을 갖게 해주었지만, 동시에 더 많은 학습과 성장이 필요하다는 불안을 느끼게 했다.", "analysis": "이 상황은 '성장'에 대한 과정을 잘 나타내는 사례로, 앨런 로버츠의 명언 '나 자신을 알라'가 적절하다. 개발자로서의 능력 향상을 위해 자기 발전에 대한 중요성을 깨닫는 계기로 삼아야 한다.", "action_list": [ "더 많은 코딩 실습을 통해 기술을 향상시키기", "도전적인 프로젝트에 도전하여 성장 기회를 얻기", "다양한 개발자들과의 소통을 통해 지식을 공유하고 확장하기" ] }`
+  `{"title":"GPT를 통한 서비스 개발의 영향","thumbnail":"https://source.unsplash.com/1600x900/?development","summary":"GPT를 통해 서비스를 만들어보는 것이 개발 실력에 도움이 될까?","emotional_content":"GPT를 통해 서비스를 만들어보는 것이 개발 실력에 도움이 될까? 이 질문에 대한 궁금증으로 가득 차 있습니다. 새로운 기술을 시도하면서의 긴장과 설레임이 느껴집니다.","emotional_result":"이 질문은 자아의 능력과 자신감에 대한 의심을 반영할 수 있습니다. 새로운 도전에 대한 두려움과 자신의 능력에 대한 불확실성이 존재한다고 볼 수 있습니다.","analysis":"새로운 기술이나 도전에 대한 두려움과 불안감은 성장의 시작이자 기회일 수 있습니다. '우리의 두려움이 가장 큰 장벽이다.' - 프랭클린 D. 루즈벨트","action_list":["새로운 기술에 도전할 때 자신을 믿어보세요.","자신의 능력을 강조하고 긍정적인 태도를 유지하세요.","두려움을 극복하기 위해 작은 단계부터 시작해보세요."]}`
 );
 
 function App() {
   const [data, setData] = useState(dummyData);
   const [isLoading, setIsLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
+  const [result, setResult] = useState(false);
 
   const handleClickAPICall = async (userInput) => {
     try {
@@ -22,13 +22,13 @@ function App() {
         prompt: `${userInput}`
       });
       console.log('message : ', message)
-      console.log(JSON.parse(message.replace(/\n/g, "")))
-      setData(JSON.parse(message.replace(/\n/g, "")))
+      setData(JSON.parse(message))
+      setResult(true);
     } catch (error) {
       console.error('에러가 발생했습니다.', error);
       messageApi.open({
         type: 'error',
-        content: '에러가 발생했습니다'
+        content: '너무 짧지 않게 말씀해주세요...'
       });
     } finally {
       setIsLoading(false);
@@ -42,11 +42,18 @@ function App() {
   return (
     <AppConatiner>
       {contextHolder}
-      {/* {console.log(data)} */}
       {console.log(JSON.stringify(data))}
-      <AppTitle>심리상담사 GPT, AI</AppTitle>
-      <DiaryInput isloading={isLoading} onSubmit={handleSubmit} />
-      <DiaryDisplay isLoading={isLoading} data={data} />
+      {console.log(result)}
+      <span>Chat GPT AI;</span>
+      <AppTitle>
+        고민, 걱정, 
+        <span>되돌아보기</span>
+        </AppTitle>
+      {
+        result
+          ? <DiaryDisplay setResult={setResult} isLoading={isLoading} data={data} />
+          : <IntroDisplay isLoading={isLoading} onSubmit={handleSubmit} />
+      }
       {import.meta.env.VITE_SOME_KEY}
     </AppConatiner>
   )
@@ -55,17 +62,26 @@ function App() {
 export default App
 
 const AppConatiner = styled.div`
-  padding: 20px;
   display: flex;
   flex-direction: column;
   max-width: 720px;
+  padding: 0 20px;
   width: 100%;
-  margin: 0 auto;
+  margin: 100px auto 0;
+  position: relative;
+  > span {
+    position: absolute;
+    left: 0; top: 0;
+    font-size: 15px;
+    color: #0ea1ac;
+    font-weight: 600;
+  }
 `;
 
-const AppTitle = styled.div`
-  width: 100%;
-  font-weight: 400;
-  font-size: 35px;
+const AppTitle = styled.h1`
+  font-weight: 600;
+  font-size: 20px;
   text-align: center;
+  margin: 0 0 50px;
+  span { color: #0ea1ac; display:inline-block; margin: 0 0 0 10px; }
 `;
