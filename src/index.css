@@ -2,13 +2,9 @@ html,body {
   margin: 0;
   font-family: "Noto Serif KR";
   font-size: 400;
-  /* background-color: #ffe7eb; */
 }
 body > * {
   font-family: "Noto Serif KR";
   font-size: 400;
   color: #444;
 }
-/* ::{
-  color:#0ea1ac;
-} */
